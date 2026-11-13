@@ -87,6 +87,47 @@
                 "Substantiated (Command Discipline A)" both count as substantiated. Each unit is one allegation, and
                 a complaint holds 2.8 allegations on average. The yearly chart leaves out the 4 allegations received
                 in 2020. Source: ProPublica, from CCRB records.</p>
+
+            <h3>White hat write-up</h3>
+
+            <p><strong>Dataset and audience.</strong> ProPublica's file lists one allegation per row: the type of
+                alleged misconduct (force, abuse of authority, discourtesy or offensive language), the year the
+                complaint arrived, and how the CCRB ruled. We wrote for a general reader who has never heard the
+                board's vocabulary, and we asked what that reader would ask first: when the board finished an
+                investigation, what did it decide?</p>
+
+            <p><strong>Marks and encodings.</strong> The ruling is a nominal attribute, so it gets hue, an identity
+                channel. Shares and counts are quantitative, so they get bar length on a common scale, the most
+                precise magnitude channel in Mackinlay's effectiveness ranking. The first chart is a 100% stacked
+                bar because the task is part to whole across types. Substantiated starts at the left edge and
+                exonerated ends at the right edge, so the two rulings a reader compares most each sit on a shared
+                baseline. Orange and blue stay distinct under color vision deficiency, and gray marks
+                unsubstantiated because it is the ruling where the board reached no conclusion. Every segment wide
+                enough prints its share, so the main values do not depend on color or hover. The second chart uses
+                bars from zero because counts are ratio data.</p>
+
+            <p><strong>Data transformation.</strong> We grouped 11 disposition labels into 3 outcomes, counted
+                allegations by type and by year, and converted counts to shares of each group. The share button
+                normalizes every year to 100% so that years with very different volumes can be compared. We flag
+                weak data instead of hiding it: 2019 and low-count years are faded, not dropped.</p>
+
+            <p><strong>Titles and labels.</strong> Each title states the finding in a sentence. The legend defines
+                each ruling in plain words, because "exonerated" sounds like "did not happen" and means the
+                opposite. Axis titles name the unit, allegations, since one complaint holds several. Row labels
+                give examples of each type. The two notes on the yearly chart sit exactly over the bars a reader
+                would otherwise misread.</p>
+
+            <p><strong>Source and bias.</strong> The largest risk in this file is who it leaves out, so the page
+                says it before the first chart. The CCRB's 2019 annual report says 89% of active officers had
+                never had a substantiated complaint. This file covers the other 11%. It also holds only full
+                investigations, while 58% of complaints the board closed in 2019 were cut short before a ruling.
+                So the 25% substantiated share here is about twice the board's own 12% for all allegations it
+                ruled on in 2019, and the climb in yearly counts reflects which officers are still employed, not
+                more misconduct.</p>
+
+            <p><strong>Interaction.</strong> The type buttons filter the yearly chart, the second pair of buttons
+                reconfigures it between counts and shares, and tooltips give details on demand. These follow the
+                filter, reconfigure and elaborate intents from Yi et al.</p>
         </section>
 
         <!-- Black hat -->
@@ -160,6 +201,168 @@
                 from 69 in January down to 6 in December, because later cases were still open. The full series
                 also shows why no trend here can be trusted: early years are low because most officers from then
                 have left the force and are not in the file.</p>
+
+            <h3>Black hat write-up</h3>
+
+            <p><strong>Goal.</strong> The graphic argues that complaints rarely hold up and are dying out. We
+                limited ourselves to tricks that keep every plotted number true, because Correll and Heer point
+                out that the hardest attacks to catch stay faithful to the data. A reader who checks our arithmetic
+                will find it correct.</p>
+
+            <p><strong>Data transformation.</strong></p>
+            <ul>
+                <li><strong>Merged categories.</strong> "Not substantiated" adds unsubstantiated (no conclusion) to
+                    exonerated (it happened, and the rules allowed it). Together they make 75%. Neither ruling
+                    says the complaint was false, and the one ruling that does, unfounded, is not in the file at
+                    all.</li>
+                <li><strong>Hidden selection.</strong> Every officer in the file has at least one substantiated
+                    allegation. A file chosen that way cannot show that complaints fail.</li>
+                <li><strong>A different unit in each chart.</strong> The left chart counts allegations, where 25%
+                    are substantiated. Counting complaints would give 32%. The right chart counts complaints,
+                    which fall. Allegations per year rose 30% from 2009 to 2018.</li>
+                <li><strong>Cherry-picked window.</strong> The line starts in 2009, the highest year, and ends in
+                    2019, when most late cases were still open and so missing from the file.</li>
+                <li><strong>Smoothing.</strong> A 3-year average is a normal way to reduce noise. Here it spreads
+                    the unfinished 2019 count across the last three points, which turns one artifact into a
+                    downward trend. From 2009 to 2018 the real count fell 11%.</li>
+            </ul>
+
+            <p><strong>Marks and encodings.</strong></p>
+            <ul>
+                <li><strong>Fitted axis.</strong> The y-axis runs from 550 to 750. The encoding lecture shows cases where a zero baseline flattens a real change, so an axis that
+                    starts above zero passes a first look. Here the line crosses 75% of the chart's height for a
+                    21% change in the value.</li>
+                <li><strong>Color that erases.</strong> Both merged rulings share one navy with no seam between
+                    them, and the substantiated share is the same pale gray as an empty track, so misconduct
+                    findings look like nothing is there.</li>
+                <li><strong>Sort order.</strong> Force leads at 87% and sets the reader's anchor.</li>
+            </ul>
+
+            <p><strong>Titles and labels.</strong></p>
+            <ul>
+                <li><strong>A headline the data cannot support.</strong> "Complaints are falling" and "complaints
+                    against NYPD officers" both claim the whole city. The file holds 449 complaints for 2019. The
+                    CCRB received 4,959 that year.</li>
+                <li><strong>Borrowed trust.</strong> The source line names the CCRB and ProPublica, the footnote
+                    gives a definition of "not substantiated" that is accurate and still hides the merge, and the
+                    tooltips give exact numbers. Hullman and Diakopoulos call this provenance rhetoric: signals
+                    of care that make a reader stop checking.</li>
+            </ul>
+
+            <p><strong>Why it is hard to catch.</strong> No single choice breaks a rule a reader can point to. The
+                merged label is accurate, the average is labeled, and the window is "the last decade". The
+                deception sits in what the file leaves out, which a reader can only learn from ProPublica's notes,
+                not from the chart.</p>
+        </section>
+
+        <!-- Extra credit -->
+        <section id="extracredit">
+            <h2>Extra credit features</h2>
+            <ul>
+                <li><strong>Undo the black hat, one trick at a time.</strong> The five buttons under the black hat
+                    graphic remove each trick in turn and keep the earlier fixes. The bars, axes, titles and
+                    headline numbers animate between states, and a caption explains each change. A reader sees
+                    how much each trick contributed, which a static before-and-after pair cannot show. It goes
+                    beyond the requirement of a separate write-up by making the critique part of the
+                    visualization.</li>
+                <li><strong>Linked white hat views.</strong> Clicking a type in the first chart, or a type
+                    button, filters the yearly chart and fades the other rows. A second pair of buttons switches
+                    the yearly chart between counts and shares of each year, with animated transitions.</li>
+                <li><strong>Honest handling of weak data.</strong> Instead of dropping unreliable years, the
+                    white hat fades 2019 and any year with fewer than 100 allegations, and puts a note over each
+                    range explaining why.</li>
+                <li><strong>Blind reader testing with AI.</strong> We tested the black hat on separate AI
+                    sessions that saw only a screenshot, one as an ordinary reader and one as an expert, and used
+                    their answers to make it subtler. The <a href="#ai">AI usage</a> section describes the
+                    method and results.</li>
+            </ul>
+        </section>
+
+        <!-- References -->
+        <section id="references">
+            <h2>References</h2>
+            <p><strong>Data</strong></p>
+            <ul>
+                <li>ProPublica. <a href="https://www.propublica.org/datastore/dataset/civilian-complaints-against-new-york-city-police-officers">Civilian
+                    Complaints Against New York City Police Officers</a>. Released July 26, 2020, updated July 27,
+                    2020. Our <code>data/allegations.csv</code> is a 5-column copy made by
+                    <code>data/prepare.py</code>, with officer names and shield numbers left out.</li>
+                <li>ProPublica. <a href="https://www.propublica.org/article/nypd-civilian-complaint-review-board-editors-note">We're
+                    Publishing Thousands of Police Discipline Records That New York Kept Secret for Decades</a>.
+                    Source for what the file includes and excludes.</li>
+                <li>NYC Civilian Complaint Review Board.
+                    <a href="https://www.nyc.gov/assets/ccrb/downloads/pdf/policy_pdf/annual_bi-annual/2019CCRB_AnnualReport.pdf">2019
+                    Annual Report</a>. Source for the definitions of each ruling and the citywide figures: 4,959
+                    complaints received, 58% of closed complaints truncated, 12% of allegations substantiated,
+                    and 89% of active officers with no substantiated complaint.</li>
+            </ul>
+            <p><strong>Readings</strong></p>
+            <ul>
+                <li>Correll, M. and Heer, J. (2017).
+                    <a href="https://idl.cs.washington.edu/files/2017-BlackHatVis-DECISIVe.pdf">Black Hat
+                    Visualization</a>. DECISIVe workshop, IEEE VIS.</li>
+                <li>Hullman, J. and Diakopoulos, N. (2011).
+                    <a href="https://mucollective.northwestern.edu/files/2011-VisRhetoric-InfoVis.pdf">Visualization
+                    Rhetoric: Framing Effects in Narrative Visualization</a>. IEEE TVCG 17(12).</li>
+                <li>Mackinlay, J. (1986). Automating the Design of Graphical Presentations of Relational
+                    Information. ACM Transactions on Graphics 5(2). Expressiveness and effectiveness, from the
+                    CMSC471 encoding lecture.</li>
+                <li>Yi, J. S., Kang, Y., Stasko, J. and Jacko, J. (2007). Toward a Deeper Understanding of the Role
+                    of Interaction in Information Visualization. IEEE TVCG 13(6). Interaction intents, from the
+                    CMSC471 interaction lecture.</li>
+            </ul>
+            <p><strong>Code</strong></p>
+            <ul>
+                <li><a href="https://d3js.org/">D3.js</a> version 7 and
+                    <a href="https://getbootstrap.com/">Bootstrap</a> 5.3. The file layout, the data joins, the
+                    tooltip and the transitions follow the CMSC471 labs.</li>
+            </ul>
+        </section>
+
+        <!-- Development process -->
+        <section id="process">
+            <h2>Development process</h2>
+            <p><strong>How the work was split.</strong> All three of us explored the data together. Ricky built
+                the white hat visualization. Emmanuel built the black hat visualization. Jonathan wrote the
+                write-ups and recorded the demo video.</p>
+            <p><strong>Time spent.</strong> [Fill in: about N people-hours in total.]</p>
+            <p><strong>What took the most time.</strong> [Fill in: which parts took the longest.]</p>
+        </section>
+
+        <!-- AI usage -->
+        <section id="ai">
+            <h2>AI usage</h2>
+            <p>We used Claude Code, an AI coding tool, in four ways.</p>
+
+            <p><strong>Research.</strong> It read ProPublica's notes and the CCRB's 2019 annual report and listed
+                what the file leaves out, with a link for each fact. We checked each number against its source
+                before using it in a write-up. This is where the selection problem came from, and that problem
+                ended up shaping both visualizations.</p>
+
+            <p><strong>Data checks.</strong> It wrote short Python scripts to profile the CSV. Two findings changed
+                our design. Complaints received in 2019 fall from 69 in January to 6 in December, which showed us
+                that 2019 is incomplete. Few records before 2000 survive because most of those officers have left
+                the force. Every number quoted on this page was recomputed from the data file.</p>
+
+            <p><strong>Code.</strong> It drafted the D3 code. Its first draft used JavaScript modules and helper
+                functions we had not covered in class. We had it rewrite everything to follow our lab files: one
+                <code>init()</code> that loads the CSV, <code>join()</code> with enter, update and exit, and the
+                same tooltip pattern. We also removed page styling we did not like.</p>
+
+            <p><strong>Testing the black hat on blind readers.</strong> This was the most useful part. We gave a
+                screenshot of the black hat graphic, and nothing else, to separate AI sessions. One played an
+                ordinary newspaper reader and one played a visualization expert looking for tricks. On our first
+                version the reader concluded "most complaints against NYPD cops don't hold up", which was the
+                goal. The expert caught the axis that started at 400 under a shaded area right away, and rated the
+                graphic 3 out of 5 for how obvious the tricks were. We replaced the shading and the hand-picked
+                floor with a 3-year average and an axis fitted to the data, which is what many chart tools do by
+                default. The expert then rated it 2 out of 5. Even the expert could only suspect, not confirm,
+                that the data left out most officers and that 2019 was incomplete, because neither shows in the
+                chart. That matches what Correll and Heer say about attacks that stay faithful to the data.</p>
+
+            <p><strong>What we did not hand over.</strong> We chose the dataset, the questions, which black hat
+                tricks to use, and the final wording. AI summaries of papers were checked against the papers
+                themselves.</p>
         </section>
 
     </div>
