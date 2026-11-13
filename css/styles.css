@@ -117,3 +117,66 @@ svg {
     pointer-events: none; /* Prevent tooltip from interfering with mouse events */
     font-size: 13px;
 }
+
+/* Black hat graphic */
+#blackGraphic {
+    border: 1px solid #ccc;
+    padding: 1.5rem;
+}
+
+.blackHeadline {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+}
+
+.blackPanels {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.blackPanels > div {
+    flex: 1 1 380px;
+}
+
+.statValue {
+    font-size: 3rem;
+    font-weight: bold;
+    line-height: 1;
+    color: #1d3f66;
+}
+
+/* A headline number is struck through once its trick is undone */
+.debunked .statValue {
+    text-decoration: line-through;
+    opacity: 0.45;
+}
+
+.panelTitle {
+    font-size: 0.95rem;
+    font-weight: bold;
+    margin: 1rem 0 0;
+}
+
+.trendLine {
+    fill: none;
+    stroke: #1d3f66;
+    stroke-width: 2.5px;
+    stroke-linejoin: round;
+}
+
+.trendPoint {
+    stroke-width: 1.5px;
+}
+
+.callout {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.source {
+    color: #555;
+    font-size: 0.8rem;
+    margin: 0.75rem 0 0;
+}

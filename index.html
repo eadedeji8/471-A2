@@ -89,6 +89,79 @@
                 in 2020. Source: ProPublica, from CCRB records.</p>
         </section>
 
+        <!-- Black hat -->
+        <section id="blackhat">
+            <h2>Black hat: the same records, bent</h2>
+
+            <p>This graphic reads the same file. Every number in it is computed correctly and every axis is
+                labeled. It is built to leave a reader believing two things the data does not show.</p>
+
+            <div id="blackGraphic">
+                <p class="blackHeadline">Most allegations against NYPD officers are not substantiated, and
+                    complaints are falling</p>
+                <p class="chartSubtitle">What the Civilian Complaint Review Board concluded in newly public police
+                    discipline records</p>
+
+                <div class="blackPanels">
+                    <div>
+                        <div id="notSubstantiatedTile">
+                            <div class="statValue" id="notSubstantiatedValue"></div>
+                            of allegations were not substantiated
+                        </div>
+                        <p class="panelTitle" id="barTitle"></p>
+                        <div id="blackBars"></div> <!-- Will hold the bar chart (SVG) -->
+                    </div>
+                    <div>
+                        <div id="declineTile">
+                            <div class="statValue" id="declineValue"></div>
+                            fewer complaints a year than in 2009
+                        </div>
+                        <p class="panelTitle" id="lineTitle"></p>
+                        <div id="blackLine"></div> <!-- Will hold the line chart (SVG) -->
+                    </div>
+                </div>
+
+                <p class="legend d-none" id="blackLegend">
+                    <span><span class="swatch unsubstantiated"></span>Unsubstantiated</span>
+                    <span><span class="swatch exonerated"></span>Exonerated</span>
+                    <span><span class="swatch substantiated"></span>Substantiated</span>
+                </p>
+                <p class="source">Source: NYC Civilian Complaint Review Board records, published by ProPublica in
+                    July 2020. Not substantiated: allegations the board closed without finding misconduct.
+                    Complaints are shown as a 3-year average.</p>
+            </div>
+
+            <p class="chartTitle">Take the black hat off</p>
+            <p class="chartSubtitle">Each button undoes one trick and keeps the earlier fixes.</p>
+            <div class="controls">
+                <button class="btn btn-sm btn-dark stepButton" data-step="0">As published</button>
+                <button class="btn btn-sm btn-outline-dark stepButton" data-step="1">1. Name the outcomes</button>
+                <button class="btn btn-sm btn-outline-dark stepButton" data-step="2">2. Show yearly counts</button>
+                <button class="btn btn-sm btn-outline-dark stepButton" data-step="3">3. Start the axis at zero</button>
+                <button class="btn btn-sm btn-outline-dark stepButton" data-step="4">4. Show every year</button>
+            </div>
+
+            <p class="stepCaption" data-step="0">This is the graphic as a reader would meet it. Nothing in it is
+                false. Step through the buttons to see what it hides.</p>
+            <p class="stepCaption d-none" data-step="1"><strong>"Not substantiated" was two different rulings in
+                one color.</strong> Unsubstantiated means the board could not decide. Exonerated means the act
+                happened and NYPD rules allowed it. Neither means the complaint was false. The allegations the
+                board did rule false, called unfounded, were removed before the file was published. The
+                substantiated share was drawn as an empty track, and now has a color of its own.</p>
+            <p class="stepCaption d-none" data-step="2"><strong>The 3-year average hid a single bad year.</strong>
+                The real counts are close to flat from 2010 to 2018 and then drop once, in 2019. Averaging each
+                year with the two before it spread that one drop over three points, so it looked like a steady
+                decline.</p>
+            <p class="stepCaption d-none" data-step="3"><strong>The axis was fitted to the data instead of
+                starting at zero.</strong> That made the line cross most of the chart's height. From zero, ten
+                years of complaints look almost level until the last point.</p>
+            <p class="stepCaption d-none" data-step="4"><strong>The window opened on the highest year and closed
+                on an unfinished one.</strong> The file only holds closed cases. Complaints received in 2019 run
+                from 69 in January down to 6 in December, because later cases were still open. The full series
+                also shows why no trend here can be trusted: early years are low because most officers from then
+                have left the force and are not in the file.</p>
+        </section>
+
     </div>
 
     <div id="tooltip" style="display:none"></div>
@@ -97,5 +170,6 @@
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="js/script.js"></script>
     <script src="js/whitehat.js"></script>
+    <script src="js/blackhat.js"></script>
 </body>
 </html>

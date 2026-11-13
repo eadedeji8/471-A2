@@ -38,6 +38,7 @@ function init(){
             allData = data
             showTotals()
             setupWhiteHat()
+            setupBlackHat()
         })
     .catch(error => console.error('Error loading data:', error));
 }
