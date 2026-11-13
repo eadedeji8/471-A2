@@ -1,0 +1,119 @@
+/* Container styling for layout */
+.container {
+    max-width: 900px;
+    margin: 2rem auto 4rem;
+    font-family: Arial, sans-serif;
+}
+
+section {
+    margin-top: 3rem;
+}
+
+.chartTitle {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin: 2rem 0 0.25rem;
+}
+
+.chartSubtitle {
+    color: #555;
+}
+
+.controls button {
+    margin: 0 0.25rem 0.25rem 0;
+}
+
+.caption {
+    color: #555;
+    font-size: 0.9rem;
+}
+
+/* The viewBox on each svg lets it shrink with the page */
+svg {
+    display: block;
+    width: 100%;
+}
+
+.axis text {
+    font-size: 13px;
+}
+
+/* Gridlines stay lighter than the bars and the baseline */
+.grid .tick line {
+    stroke: #e5e5e5;
+}
+
+.grid .domain {
+    display: none;
+}
+
+.labels {
+    font-size: 13px;
+}
+
+.columnHeader,
+.rowExamples {
+    font-size: 12.5px;
+    fill: #555;
+}
+
+.rowLabel {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.rowTotal {
+    font-size: 14px;
+}
+
+.segmentLabel {
+    font-size: 13px;
+    font-weight: bold;
+    pointer-events: none; /* Let the hover reach the bar under the label */
+}
+
+.typeSegment {
+    cursor: pointer;
+}
+
+.note {
+    font-size: 13px;
+}
+
+.noteBracket {
+    fill: none;
+    stroke: black;
+}
+
+/* Legends are plain HTML so their text can wrap */
+.legend {
+    font-size: 0.9rem;
+}
+
+.legend span {
+    margin-right: 1.25rem;
+    white-space: nowrap;
+}
+
+.swatch {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 5px;
+}
+
+/* Same colors as colorScale in js/script.js */
+.substantiated { background: #c2410c; }
+.unsubstantiated { background: #a3a3a3; }
+.exonerated { background: #1d5fa8; }
+
+#tooltip {
+    position: absolute; /* So we can move it with the cursor */
+    max-width: 260px;
+    padding: 10px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    pointer-events: none; /* Prevent tooltip from interfering with mouse events */
+    font-size: 13px;
+}

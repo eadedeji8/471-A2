@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A2: White Hat / Black Hat, NYPD Civilian Complaints</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container"> <!-- Centers content and sets max width -->
+        <h1>Assignment 2: Same Records, Two Stories</h1>
+
+        <p>CMSC471 White Hat / Black Hat Visualization by Emmanuel Adedeji, Ricky Chen and Jonathan Solomon.</p>
+
+        <p>In July 2020 ProPublica published police discipline records that New York had kept secret for decades.
+            The file holds <span class="totalAllegations"></span> allegations of misconduct from
+            <span class="totalComplaints"></span> complaints against <span class="totalOfficers"></span> New York
+            City police officers. Each one was investigated by the city's Civilian Complaint Review Board (CCRB).
+            Both visualizations below read that one file and ask the same two questions. Do complaints hold up?
+            Are they becoming more or less common?</p>
+
+        <p>
+            <a href="#whitehat">White hat</a> |
+            <a href="#blackhat">Black hat</a> |
+            <a href="#extracredit">Extra credit</a> |
+            <a href="#references">References</a> |
+            <a href="#process">Development process</a> |
+            <a href="#ai">AI usage</a>
+        </p>
+
+        <!-- White hat -->
+        <section id="whitehat">
+            <h2>White hat: what the review board decided</h2>
+
+            <p>Before reading the charts, know who is in this data. It only covers officers who were still on the
+                force in June 2020 and had at least one substantiated allegation. That is
+                <span class="totalOfficers"></span> officers, about 1 in 9. It only covers complaints the board
+                fully investigated and closed. ProPublica also removed the allegations the board ruled unfounded,
+                about 9% of what it received. So the shares below describe this group of officers. They are not
+                rates for all complaints or all officers.</p>
+
+            <div class="controls">
+                Type of allegation:
+                <button class="btn btn-sm btn-dark typeButton" data-type="All">All allegations</button>
+                <button class="btn btn-sm btn-outline-dark typeButton" data-type="Abuse of Authority">Abuse of authority</button>
+                <button class="btn btn-sm btn-outline-dark typeButton" data-type="Force">Force</button>
+                <button class="btn btn-sm btn-outline-dark typeButton" data-type="Discourtesy">Discourtesy</button>
+                <button class="btn btn-sm btn-outline-dark typeButton" data-type="Offensive Language">Offensive language</button>
+            </div>
+
+            <p class="chartTitle">Force allegations were substantiated least often. Nearly half were ruled within
+                NYPD rules.</p>
+            <p class="chartSubtitle">How the board ruled on each type of allegation, as a share of that type.
+                Types are sorted by the substantiated share. Click a bar to filter the yearly chart.</p>
+            <p class="legend">
+                <span class="swatch substantiated"></span><strong>Substantiated:</strong> the board found the
+                officer broke NYPD rules<br>
+                <span class="swatch unsubstantiated"></span><strong>Unsubstantiated:</strong> not enough evidence
+                to decide either way<br>
+                <span class="swatch exonerated"></span><strong>Exonerated:</strong> the act happened, and NYPD
+                rules allowed it
+            </p>
+            <div id="typeChart"></div> <!-- Will hold the outcome by type chart (SVG) -->
+
+            <p class="chartTitle">Yearly counts follow who is still on the force. They cannot show whether
+                misconduct rose or fell.</p>
+            <p class="chartSubtitle"><span id="yearTitle"></span> by year the complaint was received, stacked by
+                the board's ruling.</p>
+            <div class="controls">
+                Bar height shows:
+                <button class="btn btn-sm btn-dark modeButton" data-mode="count">Number of allegations</button>
+                <button class="btn btn-sm btn-outline-dark modeButton" data-mode="share">Share of each year's allegations</button>
+            </div>
+            <p class="legend">
+                <span><span class="swatch substantiated"></span>Substantiated</span>
+                <span><span class="swatch unsubstantiated"></span>Unsubstantiated</span>
+                <span><span class="swatch exonerated"></span>Exonerated</span>
+            </p>
+            <div id="yearChart"></div> <!-- Will hold the yearly chart (SVG) -->
+            <p class="caption">Faded bars are less reliable. 2019 is incomplete, and in the share view any year with
+                fewer than 100 allegations is faded because a few cases can swing its shares. Hover a bar for its
+                count.</p>
+
+            <p class="caption"><strong>What we changed in the data.</strong> We kept 5 of the 27 columns and every
+                row. We grouped the board's 11 disposition labels into 3 outcomes, so "Substantiated (Charges)" and
+                "Substantiated (Command Discipline A)" both count as substantiated. Each unit is one allegation, and
+                a complaint holds 2.8 allegations on average. The yearly chart leaves out the 4 allegations received
+                in 2020. Source: ProPublica, from CCRB records.</p>
+        </section>
+
+    </div>
+
+    <div id="tooltip" style="display:none"></div>
+
+    <!-- Load D3.js -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/whitehat.js"></script>
+</body>
+</html>
